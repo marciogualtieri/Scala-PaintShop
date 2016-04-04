@@ -1,10 +1,12 @@
 package com.zalando.paintshop.utils
 
-import com.zalando.paintshop.constants.FieldNames
 import com.zalando.paintshop.{TestCase, Customer}
+import com.zalando.paintshop.constants.FieldNames
+import com.zalando.paintshop.messages.ErrorMessages._
+import org.apache.commons.io.FilenameUtils
+import org.apache.commons.lang.SystemUtils
 
 import scala.collection.immutable.BitSet
-import com.zalando.paintshop.messages.ErrorMessages._
 
 object TestHelper {
 
@@ -25,21 +27,37 @@ object TestHelper {
   val SOME_CUSTOMER_TWIN = Customer(BitSet(0, 1, 2), Some(3))
   val SOME_OTHER_CUSTOMER = Customer(BitSet(3, 4, 5), Some(6))
 
-  val SUCCESS_INPUT_FILE = "src/test/resources/inputs/success.txt"
-  val NON_EXISTENT_FILE: String = "i/do/not.exist"
-  val UNEXPECTED_EOF_INPUT_FILE = "src/test/resources/inputs/unexpected_end_of_file.txt"
-  val NUMBER_TEST_CASES_NOT_A_NUMBER_INPUT_FILE = "src/test/resources/inputs/number_test_cases_not_a_number.txt"
-  val NUMBER_COLORS_NOT_A_NUMBER_INPUT_FILE = "src/test/resources/inputs/number_colors_not_a_number.txt"
-  val NUMBER_CUSTOMERS_NOT_A_NUMBER_INPUT_FILE = "src/test/resources/inputs/number_customers_not_a_number.txt"
-  val CUSTOMER_PAIRS_NOT_NUMBERS_INPUT_FILE = "src/test/resources/inputs/customer_pairs_not_numbers.txt"
-  val INCORRECT_NUMBER_OF_PAIRS_INPUT_FILE = "src/test/resources/inputs/incorrect_number_of_pairs.txt"
+  val SUCCESS_INPUT_FILE = FilenameUtils.separatorsToSystem("src/test/resources/inputs/success.txt")
+  val NON_EXISTENT_FILE = FilenameUtils.separatorsToSystem("i/do/not.exist")
+  val UNEXPECTED_EOF_INPUT_FILE =
+    FilenameUtils.separatorsToSystem("src/test/resources/inputs/unexpected_end_of_file.txt")
+  val NUMBER_TEST_CASES_NOT_A_NUMBER_INPUT_FILE =
+    FilenameUtils.separatorsToSystem("src/test/resources/inputs/number_test_cases_not_a_number.txt")
+  val NUMBER_COLORS_NOT_A_NUMBER_INPUT_FILE =
+    FilenameUtils.separatorsToSystem("src/test/resources/inputs/number_colors_not_a_number.txt")
+  val NUMBER_CUSTOMERS_NOT_A_NUMBER_INPUT_FILE =
+    FilenameUtils.separatorsToSystem("src/test/resources/inputs/number_customers_not_a_number.txt")
+  val CUSTOMER_PAIRS_NOT_NUMBERS_INPUT_FILE =
+    FilenameUtils.separatorsToSystem("src/test/resources/inputs/customer_pairs_not_numbers.txt")
+  val INCORRECT_NUMBER_OF_PAIRS_INPUT_FILE =
+    FilenameUtils.separatorsToSystem("src/test/resources/inputs/incorrect_number_of_pairs.txt")
   val MORE_THAN_ONE_MATTE_COLOR_INPUT_FILE =
-    "src/test/resources/inputs/customer_with_more_than_one_matte_color.txt"
-  val INVALID_COLOR_INPUT_FILE = "src/test/resources/inputs/invalid_color_code.txt"
-  val INVALID_FINISH_INPUT_FILE = "src/test/resources/inputs/invalid_finish_code.txt"
+    FilenameUtils.separatorsToSystem("src/test/resources/inputs/customer_with_more_than_one_matte_color.txt")
+  val INVALID_COLOR_INPUT_FILE =
+    FilenameUtils.separatorsToSystem("src/test/resources/inputs/invalid_color_code.txt")
+  val INVALID_FINISH_INPUT_FILE =
+    FilenameUtils.separatorsToSystem("src/test/resources/inputs/invalid_finish_code.txt")
 
   val LINES = scala.io.Source.fromFile(SUCCESS_INPUT_FILE).getLines.toList
-  val INPUT_FILE_DOES_NOT_EXIST_MESSAGE = "%s (No such file or directory)".format(NON_EXISTENT_FILE)
+
+  private val INPUT_FILE_DOES_NOT_EXIST_WINDOWS_MESSAGE = "%s (The system cannot find the path specified)"
+    .format(NON_EXISTENT_FILE)
+  private val INPUT_FILE_DOES_NOT_EXIST_UNIX_MESSAGE = "%s (No such file or directory)"
+    .format(NON_EXISTENT_FILE)
+
+  val INPUT_FILE_DOES_NOT_EXIST_MESSAGE = if (SystemUtils.IS_OS_WINDOWS) INPUT_FILE_DOES_NOT_EXIST_WINDOWS_MESSAGE
+  else INPUT_FILE_DOES_NOT_EXIST_UNIX_MESSAGE
+
   val NUMBER_TEST_CASES_NOT_A_NUMBER_MESSAGE = notNumberErrorMessage(FieldNames.NUMBER_TEST_CASES, ("X", 1))
   val NUMBER_COLORS_NOT_A_NUMBER_MESSAGE = notNumberErrorMessage(FieldNames.NUMBER_COLORS, ("X", 2))
   val NUMBER_CUSTOMERS_NOT_A_NUMBER_MESSAGE = notNumberErrorMessage(FieldNames.NUMBER_CUSTOMERS, ("X", 3))

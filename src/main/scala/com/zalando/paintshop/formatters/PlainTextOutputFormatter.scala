@@ -4,6 +4,9 @@ import com.zalando.paintshop.TestCase
 
 import scala.collection.immutable.BitSet
 
+/**
+  * Formats the solution (BitSet array) into plain text output lines.
+  */
 trait PlainTextOutputFormatter {
 
   private val OUTPUT_FORMAT: String = "Case #%d: %s"

@@ -5,7 +5,11 @@ import com.zalando.paintshop.exceptions.TestCaseProcessorException
 
 import scala.collection.immutable.BitSet
 
+/**
+  * Process test cases and find its solutions.
+  */
 trait TestCaseProcessor {
+
   def process(testCases: Array[TestCase]): Array[Option[BitSet]] = {
     return testCases.map(processTestCase)
   }

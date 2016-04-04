@@ -80,6 +80,8 @@ I'm using mutable Arrays and BitSet, as they are faster due to the somehow large
 
 I hope to achieve 100% functional code in the future (years of imperative programming are hard to shake off!).
 
+For unit tests, I'm using [ScalaTest](http://www.scalatest.org). For parsing CLI input arguments I'm using [Scopt](https://github.com/scopt/scopt).
+
 ### <a name="performance"></a> PERFORMANCE
 
 There is a Python script in the Java project, which has been used to generate the "large data set" and "small data set". Please refer to the Java project for details.

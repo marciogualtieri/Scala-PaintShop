@@ -11,6 +11,11 @@ import scopt.OptionParser
 import compat.Platform.currentTime
 import scala.collection.immutable.BitSet
 
+/**
+  * Configuration for the command-line parser (scopt)
+  * @param input Input file with the test cases.
+  * @param output Output file with the results.
+  */
 case class CliArgsConfig(input: File = null, output: File = null)
 
 /**
@@ -35,6 +40,11 @@ object PaintShop extends PlainTextInputParser with TestCaseProcessor with PlainT
     }
   }
 
+  /**
+    * Process the test cases in the input file and return the formatted solutions.
+    * @param file Input file with the test cases.
+    * @return Formatted solutions.
+    */
   def execute(file: File): List[String] = {
     val inputIterator = PlainTextFileInputIterator(file)
     val testCases = parse(inputIterator)
@@ -42,7 +52,7 @@ object PaintShop extends PlainTextInputParser with TestCaseProcessor with PlainT
     format(testCases, solutions)
   }
 
-  def processTestCasesWithBenchmarking(testCases: Array[TestCase]): Array[Option[BitSet]] = {
+  private def processTestCasesWithBenchmarking(testCases: Array[TestCase]): Array[Option[BitSet]] = {
     val startTime = currentTime
     val batches = process(testCases)
     val endTime = currentTime
@@ -50,7 +60,7 @@ object PaintShop extends PlainTextInputParser with TestCaseProcessor with PlainT
     batches
   }
 
-  def outputToFile(outputs: List[String], file: File) = {
+  private def outputToFile(outputs: List[String], file: File) = {
     val writer = new PrintWriter(file)
     try {
       outputs.foreach { output => writer.write(output + "\n") }
@@ -59,11 +69,11 @@ object PaintShop extends PlainTextInputParser with TestCaseProcessor with PlainT
     }
   }
 
-  def outputToConsole(outputs: List[String]) = {
+  private def outputToConsole(outputs: List[String]) = {
     outputs.foreach { output => println(output) }
   }
 
-  def parseCliArguments(args: Array[String]): Option[CliArgsConfig] = {
+  private def parseCliArguments(args: Array[String]): Option[CliArgsConfig] = {
     val parser = new OptionParser[CliArgsConfig](this.getClass.getCanonicalName) {
       arg[File]("<input file>") action { (x, c) =>
         c.copy(input = x) } text "Name of the input file containing test cases."

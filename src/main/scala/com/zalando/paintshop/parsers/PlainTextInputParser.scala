@@ -9,7 +9,11 @@ import scala.collection.immutable.BitSet
 
 import com.zalando.paintshop.messages.ErrorMessages._
 
+/**
+  * Parses an input plain text file following the syntax from the specification.
+  */
 trait PlainTextInputParser extends InputParser {
+
   def parse(inputIterator: InputIterator): Array[TestCase] = {
     val numTestCases = parseInt(inputIterator, "Number of test cases")
     var testCases = Array[TestCase]()

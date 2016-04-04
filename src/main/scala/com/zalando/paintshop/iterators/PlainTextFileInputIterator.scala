@@ -7,10 +7,18 @@ import com.zalando.paintshop.messages.ErrorMessages
 
 import scala.io.Source
 
+/**
+  * Iterator for a plain text file.
+  * @param file File to iterate through line by line.
+  */
 class PlainTextFileInputIterator(val file: File) extends InputIterator {
   val iterator = Source.fromFile(file).getLines()
   var lineNumber = 0
 
+  /**
+    * Reads a line from the file.
+    * @return a tuple (line value, line number).
+    */
   override def readLine: (String, Int) = {
     try {
       lineNumber += 1
