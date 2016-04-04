@@ -59,9 +59,9 @@ Which will print the following:
 
 ### <a name="on-the-design-choices"></a> ON THE DESIGN CHOICES
 
-This project mirrors in basic lines the Java one available in the package regarding design and algorithm. Please refer to the Java project for details on the design and algorithm analysis.
+This project mirrors in basic lines the Java one available in the package regarding architecture and algorithm. Please refer to the Java project for details on the design, as well as algorithm analysis.
 
-Aside from obvious differences between Java's and Scala's syntax, the most appealing is that Scala has traits:
+Aside from obvious differences between Java's and Scala's syntax, the most appealing is that Scala supports mixin inheritance with traits:
 
     object PaintShop 
         extends PlainTextInputParser 
@@ -70,11 +70,13 @@ Aside from obvious differences between Java's and Scala's syntax, the most appea
        ...
     }
 
-```PlainTextInputParser```, ```TestCaseProcessor``` and ```SimpleOutputFormatter``` are the equivalent components to the ones available in the Java version, but mixing inheritance using traits is much nicer than standard composition.
+```PlainTextInputParser```, ```TestCaseProcessor``` and ```SimpleOutputFormatter``` are the equivalent components to the ones available in the Java version, but using traits is nicer than composition (and much nicer than classical inheritance, which should be avoided).
 
 There is a significant reduction in the number of lines in the Scala code when compared to java. In general, the scala classes and methods are much smaller.
 
-I tried to be functional as much as I could. I'm only using vars for the ```PlanTextFileInputIterator``` (line counter) and the ```PlainTextInputParser``` (using Arrays to store the test cases parsed from the input file).
+I tried to be functional as much as I could. I'm only using vars for the ```PlanTextFileInputIterator``` (line counter), ```PlainTextInputParser``` (Arrays) and ```TestCaseProcessor``` (muttable BitSet).
+
+I'm using mutable Arrays and BitSet, as they are faster due to the somehow large number of iterations over them.
 
 I hope to achieve 100% functional code in the future (years of imperative programming are hard to shake off!).
 
@@ -82,7 +84,7 @@ I hope to achieve 100% functional code in the future (years of imperative progra
 
 There is a Python script in the Java project, which has been used to generate the "large data set" and "small data set". Please refer to the Java project for details.
 
-Running on my computer, a Lenovo Yoga 2 laptop/tablet running Ubuntu 12.04, I got the following results:
+Running on my computer, a Lenovo Yoga 2 laptop running Ubuntu 12.04, I got the following results:
 
 Large data set:
 
@@ -91,7 +93,7 @@ Large data set:
     ./src/test/resources/inputs/performance/large_dataset.txt 
     -o large_dataset_output.txt
     
-    Total processing time: 83 ms
+    Total processing time: 39 ms
 
 Small data set:
 
@@ -100,7 +102,7 @@ Small data set:
     ./src/test/resources/inputs/performance/small_dataset.txt 
     -o small_dataset_output.txt
     
-    Total processing time: 22 ms
+    Total processing time: 37 ms
 
 ### <a name="how-to-visualize-this-document"></a> HOW TO VISUALIZE THIS DOCUMENT
 

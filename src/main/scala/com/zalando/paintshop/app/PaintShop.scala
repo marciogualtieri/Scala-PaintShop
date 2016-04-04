@@ -2,19 +2,21 @@ package com.zalando.paintshop.app
 
 import java.io.{PrintWriter, File}
 
-import com.zalando.paintshop.formatters.SimpleOutputFormatter
+import com.zalando.paintshop.TestCase
+import com.zalando.paintshop.formatters.PlainTextOutputFormatter
 import com.zalando.paintshop.iterators.PlainTextFileInputIterator
 import com.zalando.paintshop.parsers.PlainTextInputParser
 import com.zalando.paintshop.processors.TestCaseProcessor
 import scopt.OptionParser
 import compat.Platform.currentTime
+import scala.collection.immutable.BitSet
 
 case class CliArgsConfig(input: File = null, output: File = null)
 
 /**
   * Main command-line application.
   */
-object PaintShop extends PlainTextInputParser with TestCaseProcessor with SimpleOutputFormatter {
+object PaintShop extends PlainTextInputParser with TestCaseProcessor with PlainTextOutputFormatter {
 
   private val BENCHMARK_OUTPUT_FORMAT = "\nTotal processing time: %d ms\n"
 
@@ -22,17 +24,30 @@ object PaintShop extends PlainTextInputParser with TestCaseProcessor with Simple
     val cliArguments = parseCliArguments(args)
     cliArguments match {
       case Some(config) =>
-        val inputIterator = PlainTextFileInputIterator(config.input)
-        val testCases = parse(inputIterator)
-        val startTime = currentTime
-        val batches = process(testCases)
-        val endTime = currentTime
-        println(BENCHMARK_OUTPUT_FORMAT.format(endTime - startTime))
-        val outputs = format(testCases, batches)
-        if(config.output != null) outputToFile(outputs, config.output)
-        else outputToConsole(outputs)
+        try {
+          val outputs = execute(config.input)
+          if (config.output != null) outputToFile(outputs, config.output)
+          else outputToConsole(outputs)
+        } catch {
+          case e: Throwable => println(e.getMessage)
+        }
       case None =>
     }
+  }
+
+  def execute(file: File): List[String] = {
+    val inputIterator = PlainTextFileInputIterator(file)
+    val testCases = parse(inputIterator)
+    val solutions = processTestCasesWithBenchmarking(testCases)
+    format(testCases, solutions)
+  }
+
+  def processTestCasesWithBenchmarking(testCases: Array[TestCase]): Array[Option[BitSet]] = {
+    val startTime = currentTime
+    val batches = process(testCases)
+    val endTime = currentTime
+    println(BENCHMARK_OUTPUT_FORMAT.format(endTime - startTime))
+    batches
   }
 
   def outputToFile(outputs: List[String], file: File) = {

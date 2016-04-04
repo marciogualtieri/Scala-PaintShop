@@ -4,7 +4,7 @@ import com.zalando.paintshop.TestCase
 
 import scala.collection.immutable.BitSet
 
-trait SimpleOutputFormatter {
+trait PlainTextOutputFormatter {
 
   private val OUTPUT_FORMAT: String = "Case #%d: %s"
 

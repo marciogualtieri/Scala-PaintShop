@@ -25,6 +25,7 @@ object TestHelper {
   val SOME_CUSTOMER_TWIN = Customer(BitSet(0, 1, 2), Some(3))
   val SOME_OTHER_CUSTOMER = Customer(BitSet(3, 4, 5), Some(6))
 
+  val SUCCESS_INPUT_FILE = "src/test/resources/inputs/success.txt"
   val NON_EXISTENT_FILE: String = "i/do/not.exist"
   val UNEXPECTED_EOF_INPUT_FILE = "src/test/resources/inputs/unexpected_end_of_file.txt"
   val NUMBER_TEST_CASES_NOT_A_NUMBER_INPUT_FILE = "src/test/resources/inputs/number_test_cases_not_a_number.txt"
@@ -37,8 +38,7 @@ object TestHelper {
   val INVALID_COLOR_INPUT_FILE = "src/test/resources/inputs/invalid_color_code.txt"
   val INVALID_FINISH_INPUT_FILE = "src/test/resources/inputs/invalid_finish_code.txt"
 
-  val SUCCESS_FROM_SPEC_INPUT_FILE = "src/test/resources/inputs/success_from_specification.txt"
-  val LINES = scala.io.Source.fromFile(SUCCESS_FROM_SPEC_INPUT_FILE).getLines.toList
+  val LINES = scala.io.Source.fromFile(SUCCESS_INPUT_FILE).getLines.toList
   val INPUT_FILE_DOES_NOT_EXIST_MESSAGE = "%s (No such file or directory)".format(NON_EXISTENT_FILE)
   val NUMBER_TEST_CASES_NOT_A_NUMBER_MESSAGE = notNumberErrorMessage(FieldNames.NUMBER_TEST_CASES, ("X", 1))
   val NUMBER_COLORS_NOT_A_NUMBER_MESSAGE = notNumberErrorMessage(FieldNames.NUMBER_COLORS, ("X", 2))

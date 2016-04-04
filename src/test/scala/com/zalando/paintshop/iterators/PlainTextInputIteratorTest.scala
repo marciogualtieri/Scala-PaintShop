@@ -8,13 +8,13 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 class PlainTextInputIteratorTest extends FlatSpec with Matchers with BeforeAndAfter {
 
   "Iterator" should "should return all file lines" in {
-    val inputIterator = PlainTextFileInputIterator(TestHelper.SUCCESS_FROM_SPEC_INPUT_FILE)
+    val inputIterator = PlainTextFileInputIterator(TestHelper.SUCCESS_INPUT_FILE)
     val lines = inputIterator.toList
     lines.toList should be(TestHelper.LINES)
   }
 
   "Iterator" should "should return correct line numbers" in {
-    val inputIterator = PlainTextFileInputIterator(TestHelper.SUCCESS_FROM_SPEC_INPUT_FILE)
+    val inputIterator = PlainTextFileInputIterator(TestHelper.SUCCESS_INPUT_FILE)
     inputIterator.readLine should be(("2", 1))
     inputIterator.readLine should be(("5", 2))
     inputIterator.readLine should be(("3", 3))

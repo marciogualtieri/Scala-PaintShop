@@ -9,7 +9,7 @@ class PlainTextInputParserTest extends FlatSpec with Matchers with BeforeAndAfte
 
   "Input parser" should "parse plain text input into test cases" in {
     val inputParser = ConcreteInputParser()
-    val inputIterator = PlainTextFileInputIterator(TestHelper.SUCCESS_FROM_SPEC_INPUT_FILE)
+    val inputIterator = PlainTextFileInputIterator(TestHelper.SUCCESS_INPUT_FILE)
     inputParser.parse(inputIterator) should be(TestHelper.TEST_CASES)
   }
 
