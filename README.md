@@ -3,7 +3,7 @@
 ### [EXECUTE THE JAR IN THE COMMAND LINE](#execute-the-jar-in-the-command-line)
 ### [ON THE DESIGN CHOICES](#on-the-design-choices)
 ### [PERFORMANCE](#performance)
-### [HOW TO VISUALIZE THIS DOCUMENT](#how-to-visualize-this-document)
+### [HOW TO VIEW THIS DOCUMENT](#how-to-view-this-document)
 
 ### <a name="test-and-build-the-application"></a> TEST & BUILD THE APPLICATION
 
@@ -13,7 +13,7 @@ ScalaDoc generated documentation will be available in the following file:
 
      ./target/scala-2.11/api/index.html
 
-This application requires SBT and Scala 2.11
+This application was developed using SBT 0.13.0 and Scala 2.11
 
 ### <a name="execute-the-jar-in-the-command-line"></a> EXECUTE THE JAR IN THE COMMAND LINE
 
@@ -25,19 +25,19 @@ If ```-o``` (or ```--output-file```) isn't provided, the output will be printed 
 
 Examples:
 
-    java -jar target/scala-2.11/PaintShop-assembly-1.0.jar 
-    ./src/test/resources/inputs/success_from_specification.txt
+    java -jar target/scala-2.11/PaintShop-assembly-1.0.jar \
+    ./src/test/resources/inputs/success_from_specification.txt \
     
-    java -jar target/scala-2.11/PaintShop-assembly-1.0.jar 
-    ./src/test/resources/inputs/success_from_specification.txt 
+    java -jar target/scala-2.11/PaintShop-assembly-1.0.jar \
+    ./src/test/resources/inputs/success_from_specification.txt \
     -o output.txt
     
-    java -jar target/scala-2.11/PaintShop-assembly-1.0.jar 
-    ./src/test/resources/inputs/performance/small_dataset.txt 
+    java -jar target/scala-2.11/PaintShop-assembly-1.0.jar \
+    ./src/test/resources/inputs/performance/small_dataset.txt \
     -o small_dataset_output.txt
     
-    java -jar target/scala-2.11/PaintShop-assembly-1.0.jar 
-    ./src/test/resources/inputs/performance/large_dataset.txt 
+    java -jar target/scala-2.11/PaintShop-assembly-1.0.jar \
+    ./src/test/resources/inputs/performance/large_dataset.txt \
     -o large_dataset_output.txt
 
 For help execute the following command:
@@ -106,9 +106,9 @@ Small data set:
     
     Total processing time: 37 ms
 
-### <a name="how-to-visualize-this-document"></a> HOW TO VISUALIZE THIS DOCUMENT
+### <a name="how-to-view-this-document"></a> HOW TO VIEW THIS DOCUMENT
 
-This document is better visualized using IntelliJ's Markdown Plugin. In case it isn't available, there is a PDF version of this document in the same directory.
+This document is better viewed using IntelliJ's Markdown Plugin. In case it isn't available, there is a PDF version of this document in the same directory.
 
 For my own reference, to convert markdown to PDF use the following command:
 

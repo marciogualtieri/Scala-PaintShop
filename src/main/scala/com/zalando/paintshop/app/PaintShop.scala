@@ -13,10 +13,11 @@ import scala.collection.immutable.BitSet
 
 /**
   * Configuration for the command-line parser (scopt)
+ *
   * @param input Input file with the test cases.
   * @param output Output file with the results.
   */
-case class CliArgsConfig(input: File = null, output: File = null)
+case class CliConfig(input: File = null, output: File = null)
 
 /**
   * Main command-line application.
@@ -42,6 +43,7 @@ object PaintShop extends PlainTextInputParser with TestCaseProcessor with PlainT
 
   /**
     * Process the test cases in the input file and return the formatted solutions.
+ *
     * @param file Input file with the test cases.
     * @return Formatted solutions.
     */
@@ -73,8 +75,8 @@ object PaintShop extends PlainTextInputParser with TestCaseProcessor with PlainT
     outputs.foreach { output => println(output) }
   }
 
-  private def parseCliArguments(args: Array[String]): Option[CliArgsConfig] = {
-    val parser = new OptionParser[CliArgsConfig](this.getClass.getCanonicalName) {
+  private def parseCliArguments(args: Array[String]): Option[CliConfig] = {
+    val parser = new OptionParser[CliConfig]("java -jar <jar name>") {
       arg[File]("<input file>") action { (x, c) =>
         c.copy(input = x) } text "Name of the input file containing test cases."
 
@@ -83,6 +85,6 @@ object PaintShop extends PlainTextInputParser with TestCaseProcessor with PlainT
 
       help("help") text "prints this help text"
     }
-    parser.parse(args, CliArgsConfig())
+    parser.parse(args, CliConfig())
   }
 }
