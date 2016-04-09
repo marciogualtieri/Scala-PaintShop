@@ -66,7 +66,7 @@ Aside from obvious differences between Java's and Scala's syntax, the most appea
     object PaintShop 
         extends PlainTextInputParser 
         with TestCaseProcessor 
-        with SimpleOutputFormatter {
+        with PlainTextOutputFormatter {
        ...
     }
 
