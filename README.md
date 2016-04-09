@@ -95,7 +95,7 @@ Large data set:
     ./src/test/resources/inputs/performance/large_dataset.txt 
     -o large_dataset_output.txt
     
-    Total processing time: 39 ms
+    Total processing time: 51 ms
 
 Small data set:
 
