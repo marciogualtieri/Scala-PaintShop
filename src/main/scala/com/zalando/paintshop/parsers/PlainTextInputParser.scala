@@ -7,6 +7,8 @@ import com.zalando.paintshop.{Customer, TestCase}
 import com.zalando.paintshop.iterators.InputIterator
 import scala.collection.immutable.BitSet
 
+import List.{fill => repeat}
+
 import com.zalando.paintshop.messages.ErrorMessages._
 
 /**
@@ -17,11 +19,11 @@ trait PlainTextInputParser extends InputParser {
   def parse(inputIterator: InputIterator): Array[TestCase] = {
     val numTestCases = parseInt(inputIterator, "Number of test cases")
     var testCases = Array[TestCase]()
-    (1 to numTestCases).foreach { _ =>
+    repeat(numTestCases) {
       val numColors = parseInt(inputIterator, FieldNames.NUMBER_COLORS)
       val numCustomers = parseInt(inputIterator, "Number of customers")
       var customers = Array[Customer]()
-      (1 to numCustomers).foreach { _ =>
+      repeat(numCustomers) {
         customers = customers :+ parseCustomer(inputIterator, numColors)
       }
       testCases = testCases :+ TestCase(numColors, customers)

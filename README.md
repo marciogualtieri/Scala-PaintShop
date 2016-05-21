@@ -74,7 +74,7 @@ Aside from obvious differences between Java's and Scala's syntax, the most appea
 
 There is a significant reduction in the number of lines in the Scala code when compared to java. In general, the scala classes and methods are much smaller.
 
-I tried to be functional as much as I could. I'm only using vars for the ```PlanTextFileInputIterator``` (line counter), ```PlainTextInputParser``` (Arrays) and ```TestCaseProcessor``` (muttable BitSet).
+I tried to be functional as much as I could. I'm only using vars for the ```PlanTextFileInputIterator``` (line counter), ```PlainTextInputParser``` (Arrays) and ```TestCaseProcessor``` (mutable BitSet).
 
 I'm using mutable Arrays and BitSet, as they are faster due to the somehow large number of iterations over them.
 
