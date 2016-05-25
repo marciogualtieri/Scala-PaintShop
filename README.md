@@ -108,7 +108,7 @@ Small data set:
 
 ### <a name="how-to-view-this-document"></a> HOW TO VIEW THIS DOCUMENT
 
-This document is better viewed using IntelliJ's Markdown Plugin. In case it isn't available, there is a PDF version of this document in the same directory.
+This document is better viewed using IntelliJ's GFM Plugin. In case it isn't available, there is a PDF version of this document in the same directory.
 
 For my own reference, to convert markdown to PDF use the following command:
 
