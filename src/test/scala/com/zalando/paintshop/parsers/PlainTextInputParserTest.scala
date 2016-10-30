@@ -5,54 +5,54 @@ import com.zalando.paintshop.iterators.{InputIterator, PlainTextFileInputIterato
 import com.zalando.paintshop.utils.{ConcreteInputParser, TestHelper}
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
-class PlainTextInputParserTest extends FlatSpec with Matchers with BeforeAndAfter {
+class PlainTextInputParserTest extends FlatSpec with Matchers with BeforeAndAfter  with TestHelper {
 
   "Input parser" should "parse plain text input into test cases" in {
     val inputParser = ConcreteInputParser()
-    val inputIterator = PlainTextFileInputIterator(TestHelper.SUCCESS_INPUT_FILE)
-    inputParser.parse(inputIterator) should be(TestHelper.TEST_CASES)
+    val inputIterator = PlainTextFileInputIterator(SuccessInputFile)
+    inputParser.parse(inputIterator) should be(TestCases)
   }
 
   "Input parser" should "throw an exception when number of test cases is not a number" in {
     val inputParser = ConcreteInputParser()
-    val inputIterator = PlainTextFileInputIterator(TestHelper.NUMBER_TEST_CASES_NOT_A_NUMBER_INPUT_FILE)
-    verifyInputParserException(inputParser, inputIterator, TestHelper.NUMBER_TEST_CASES_NOT_A_NUMBER_MESSAGE)
+    val inputIterator = PlainTextFileInputIterator(NumberTestCasesNotANumberInputFile)
+    verifyInputParserException(inputParser, inputIterator, NumberTestCasesNotANumberMessage)
   }
 
   "Input parser" should "throw an exception when number of colors is not a number" in {
     val inputParser = ConcreteInputParser()
-    val inputIterator = PlainTextFileInputIterator(TestHelper.NUMBER_COLORS_NOT_A_NUMBER_INPUT_FILE)
-    verifyInputParserException(inputParser, inputIterator, TestHelper.NUMBER_COLORS_NOT_A_NUMBER_MESSAGE)
+    val inputIterator = PlainTextFileInputIterator(NumberColorsNotANumberInputFile)
+    verifyInputParserException(inputParser, inputIterator, NumberColorsNotANumberMessage)
   }
 
   "Input parser" should "throw an exception when number of customers is not a number" in {
     val inputParser = ConcreteInputParser()
-    val inputIterator = PlainTextFileInputIterator(TestHelper.NUMBER_CUSTOMERS_NOT_A_NUMBER_INPUT_FILE)
-    verifyInputParserException(inputParser, inputIterator, TestHelper.NUMBER_CUSTOMERS_NOT_A_NUMBER_MESSAGE)
+    val inputIterator = PlainTextFileInputIterator(NumberCustomersNotANumberInputFile)
+    verifyInputParserException(inputParser, inputIterator, NumberCustomersNotANumberMessage)
   }
 
   "Input parser" should "throw an exception when customer has non numeric pairs" in {
     val inputParser = ConcreteInputParser()
-    val inputIterator = PlainTextFileInputIterator(TestHelper.CUSTOMER_PAIRS_NOT_NUMBERS_INPUT_FILE)
-    verifyInputParserException(inputParser, inputIterator, TestHelper.CUSTOMER_PAIRS_NOT_NUMBERS_MESSAGE)
+    val inputIterator = PlainTextFileInputIterator(CustomerPairsNotNumbersInputFile)
+    verifyInputParserException(inputParser, inputIterator, CustomerPairsNotNumbersMessage)
   }
 
   "Input parser" should "throw an exception when customer has wrong number of pairs" in {
     val inputParser = ConcreteInputParser()
-    val inputIterator = PlainTextFileInputIterator(TestHelper.MORE_THAN_ONE_MATTE_COLOR_INPUT_FILE)
-    verifyInputParserException(inputParser, inputIterator, TestHelper.MORE_THAN_ONE_MATTE_COLOR_MESSAGE)
+    val inputIterator = PlainTextFileInputIterator(MoreThanOneMatteColorInputFile)
+    verifyInputParserException(inputParser, inputIterator, MoreThanOneMatteColorMessage)
   }
 
   "Input parser" should "throw an exception when customer has invalid color" in {
     val inputParser = ConcreteInputParser()
-    val inputIterator = PlainTextFileInputIterator(TestHelper.INVALID_COLOR_INPUT_FILE)
-    verifyInputParserException(inputParser, inputIterator, TestHelper.INVALID_COLOR_INPUT_MESSAGE)
+    val inputIterator = PlainTextFileInputIterator(InvalidColorInputFile)
+    verifyInputParserException(inputParser, inputIterator, InvalidColorInputMessage)
   }
 
   "Input parser" should "throw an exception when customer has invalid finish" in {
     val inputParser = ConcreteInputParser()
-    val inputIterator = PlainTextFileInputIterator(TestHelper.INVALID_FINISH_INPUT_FILE)
-    verifyInputParserException(inputParser, inputIterator, TestHelper.INVALID_FINISH_INPUT_MESSAGE)
+    val inputIterator = PlainTextFileInputIterator(InvalidFinishInputFile)
+    verifyInputParserException(inputParser, inputIterator, InvalidFinishInputMessage)
   }
 
   private def verifyInputParserException(inputParser: InputParser, inputIterator: InputIterator, message: String) = {

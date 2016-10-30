@@ -3,18 +3,18 @@ package com.zalando.paintshop
 import com.zalando.paintshop.utils.TestHelper
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
-class TestCaseTest extends FlatSpec with Matchers with BeforeAndAfter {
+class TestCaseTest extends FlatSpec with Matchers with BeforeAndAfter with TestHelper {
 
-  val SOME_TEST_CASE = TestCase(1, Array(TestHelper.SOME_CUSTOMER))
-  val SOME_TEST_CASE_TWIN = TestCase(1, Array(TestHelper.SOME_CUSTOMER_TWIN))
-  val SOME_OTHER_TEST_CASE = TestCase(1, Array(TestHelper.SOME_OTHER_CUSTOMER))
+  val SomeTestCase = TestCase(1, Array(SomeCustomer))
+  val SomeTestCaseTwin = TestCase(1, Array(SomeCustomerTwin))
+  val SomeOtherTestCase = TestCase(1, Array(SomeOtherCustomer))
 
   "Test case" should "be equal" in {
-    SOME_TEST_CASE should be (SOME_TEST_CASE_TWIN)
+    SomeTestCase should be (SomeTestCaseTwin)
   }
 
   "Test case" should "not be equal" in {
-    SOME_TEST_CASE should not be (SOME_OTHER_TEST_CASE)
+    SomeTestCase should not be (SomeOtherTestCase)
   }
 }
 
