@@ -59,7 +59,7 @@ Which will print the following:
 
 ### <a name="on-the-design-choices"></a> ON THE DESIGN CHOICES
 
-This project mirrors in basic lines the Java one available in the package regarding architecture and algorithm. Please refer to the Java project for details on the design, as well as algorithm analysis.
+This project mirrors in basic lines the Java one available in the package regarding architecture and algorithm. Please refer to [Java-Paintshop](https://github.com/marciogualtieri/Scala-PaintShop) for details on the design, as well as algorithm analysis.
 
 Aside from obvious differences between Java's and Scala's syntax, the most appealing is that Scala supports mixin inheritance with traits:
 
