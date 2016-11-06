@@ -1,14 +1,13 @@
 package com.zalando.paintshop.processors
 
-import com.zalando.paintshop.utils.{ConcretePlainTextOutputFormatter, TestHelper, ConcreteTestCaseProcessor}
+import com.zalando.paintshop.formatters.PlainTextOutputFormatter
+import com.zalando.paintshop.utils.TestHelper
 import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
 
-class PlainTextOutputFormatterTest extends FlatSpec with Matchers with BeforeAndAfter with TestHelper {
+class PlainTextOutputFormatterTest extends FlatSpec with Matchers with BeforeAndAfter with TestHelper with PlainTextOutputFormatter {
 
   "Output formatter" should "return list of formatted solutions" in {
-    val outputFormatter = new ConcretePlainTextOutputFormatter()
-    val outputs = outputFormatter.format(TestCases, Solutions)
-    outputs should be (Outputs)
+    format(TestCases, Solutions) should be (Outputs)
   }
 }
 
